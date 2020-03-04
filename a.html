@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<script>
+  $(document).ready(function () {
+    $("#product > li").click(function () {
+      console.log();
+      if (!$(this).hasClass("active")) {
+        $("#product > li").each(function (idx, li) {
+          var product = $(li);
+          if (product.hasClass("active")) {
+            product.removeClass("active");
+            $(product.attr('id')).collapse("toggle");
+          }
+        });
+        $($(this).attr('id')).collapse("toggle");
+        $($(this).addClass("active"));
+
+      }
+      else {
+        $($(this).attr('id')).collapse("toggle");
+        $($(this).removeClass("active"));
+      }
+    });
+
+    $(".btn").click(function(){
+        var data =$(this).parent().serializeArray();
+        var lt = "Product: "+data[0].value+" QTY: "+data[1].value+"Kg"+ " Price: Rs "+  parseFloat(data[1].value)*parseFloat(data[2].value);
+        $("#cart_list").append('<li class="list-group-item">'+lt+'</li>');
+    })
+  })
+
+</script>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">WebSiteName</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#">Page 1</a></li>
+        <li><a href="#">Page 2</a></li>
+        <li><a href="#">Page 3</a></li>
+      </ul>
+    </div>
+  </nav>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3">
+        <ul class=" list-group" id="product">
+          <li class="list-group-item active" id="#a1">Cras justo odio</li>
+          <li class="list-group-item" id="#a2">Dapibus ac facilisis in</li>
+          <li class="list-group-item" id="#a3">Morbi leo risus</li>
+          <li class="list-group-item" id="#a4">Porta ac consectetur ac</li>
+          <li class="list-group-item" id="#a5">Vestibulum at eros</li>
+        </ul>
+      </div>
+      <div class="col-md-6">
+        <div class="panel panel-primary collapse in" id="a1">
+          <div class="panel-heading ">Panel with panel-primary class</div>
+          <div class="panel-body">
+            <div class="panel-group" id="accordion">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse1">Collapsible Group 1</a>
+                  </h4>
+                </div>
+                <div id="collapse1" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <form class="form-inline" action="#">
+                      <div class="form-group">
+                        <input type="hidden" name="product" value="demo"/>
+                        <label for="kg">Kg:</label>
+                        <input type="kg" name="kg" class="form-control" id="kg">
+                      </div>
+                      <div class="form-group">
+                        <label for="pwd">Price:</label>
+                        <input type="price" name="price" readonly class="form-control" value="20">
+                      </div>
+
+                      <button type="button" class="btn btn-default">Add</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse2">Collapsible Group 2</a>
+                  </h4>
+                </div>
+                <div id="collapse2" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <form class="form-inline" action="#">
+                      <div class="form-group">
+                        <label for="kg">Kg:</label>
+                        <input type="kg" class="form-control" id="kg">
+                      </div>
+                      <div class="form-group">
+                        <label for="pwd">Qty:</label>
+                        <input type="qty" class="form-control" id="qty">
+                      </div>
+
+                      <button type="submit" class="btn btn-default">Add</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h4 class="panel-title">
+                    <a data-toggle="collapse" data-parent="#accordion" href="#collapse3">Collapsible Group 3</a>
+                  </h4>
+                </div>
+                <div id="collapse3" class="panel-collapse collapse">
+                  <div class="panel-body">
+                    <form class="form-inline" action="#">
+                      <div class="form-group">
+                        <input type="hidden" value="ab" />
+                        <label for="kg">Kg:</label>
+                        <input type="kg" class="form-control" id="kg">
+                      </div>
+                      <div class="form-group">
+                        <label for="pwd">Qty:</label>
+                        <input type="qty" class="form-control" id="qty">
+                      </div>
+
+                      <button type="button" class="btn btn-default">Add</button>
+                    </form>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-primary collapse" id="a2">
+          <div class="panel-heading">Panel with panel-primary class</div>
+          <div class="panel-body">Panel Content</div>
+        </div>
+        <div class="panel panel-primary collapse" id="a3">
+          <div class="panel-heading">Panel with panel-primary class</div>
+          <div class="panel-body">Panel Content</div>
+        </div>
+        <div class="panel panel-primary collapse" id="a4">
+          <div class="panel-heading">Panel with panel-primary class</div>
+          <div class="panel-body">Panel Content</div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="panel panel-default">
+          <div class="panel-heading">Cart</div>
+          <div class="panel-body">
+            <ul class="list-group" id="cart_list">
+              
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>
